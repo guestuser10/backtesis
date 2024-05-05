@@ -7,6 +7,7 @@ from database import User, Tablas
 
 import pages.users as p_users
 import pages.tablas as p_tablas
+import pages.login as p_login
 
 from schemas.sch_users import UserBase
 from schemas.sch_tablas import tablaBase
@@ -36,6 +37,14 @@ def shutdown():
 @app.get("/")
 async def root():
     return {"on service"}
+#endregion
+
+
+#region Login
+@app.post('/login', tags=["login"])
+async def Login(user: str, password: str):
+    return await p_login.login(user, password)
+
 #endregion
 
 
